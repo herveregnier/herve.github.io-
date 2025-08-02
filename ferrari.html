@@ -17,14 +17,18 @@
         }
     </style>
     <script>
-        let audio1, audio2;
+        let audio1, audio2, audio3, audio4;
 
         function initAudio() {
             try {
                 audio1 = new Audio('sounds/herve.wav');
                 audio2 = new Audio('sounds/herve1.wav');
+                audio3 = new Audio('sounds/herve3.mp3');
+                audio4 = new Audio('sounds/herve4.mp3');
                 audio1.loop = true;
                 audio2.loop = true;
+                audio3.loop = true;
+                audio4.loop = true;
             } catch(e) {
                 console.error('Error loading audio:', e);
             }
@@ -43,14 +47,20 @@
                 document.body.classList.add('loaded');
             };
             img.src = 'herve.jpg';
-            
+
             initAudio();
+            // Play all sounds on page load
+            if(audio1) audio1.play();
+            if(audio2) audio2.play();
+            if(audio3) audio3.play();
+            if(audio4) audio4.play();
+
             document.body.addEventListener('click', function () {
-                if(audio1 && audio2) {
-                    audio1.play();
-                    audio2.play();
-                    spamWindows();
-                }
+                if(audio1) audio1.play();
+                if(audio2) audio2.play();
+                if(audio3) audio3.play();
+                if(audio4) audio4.play();
+                spamWindows();
             });
         }
     </script>
